@@ -10,8 +10,8 @@ const inter = Inter({
 export const metadata = constructMetadata({});
 
 type Props = {
-	children: React.ReactNode
-}
+	children: React.ReactNode;
+};
 
 export default function RootLayout({ children }: Props) {
 	return (
