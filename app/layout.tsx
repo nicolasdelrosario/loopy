@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Providers from "@/components/providers";
 import { constructMetadata } from "@/utils/construct-metadata";
 
 const inter = Inter({
@@ -19,7 +20,7 @@ export default function RootLayout({ children }: Props) {
 			<body
 				className={`${inter.variable} antialiased min-h-screen min-w-screen`}
 			>
-				{children}
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	);
