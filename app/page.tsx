@@ -12,7 +12,7 @@ export default function Home() {
 			{/* Header */}
 			<Header />
 			{/* Hero Section */}
-			<section className="container mx-auto px-4 py-20 text-center">
+			<section className="max-w-7xl mx-auto px-4 py-20 text-center">
 				<Badge className="mb-6 text-pretty">
 					Build Better Habits, One Loop at a Time
 				</Badge>
@@ -39,7 +39,7 @@ export default function Home() {
 				</div>
 			</section>
 			{/* Features Section */}
-			<section className="container mx-auto px-4 py-20" id="features">
+			<section className="max-w-7xl mx-auto px-4 py-20" id="features">
 				<div className="text-center mb-16">
 					<h2 className="text-3xl md:text-4xl font-bold mb-4">
 						Everything You Need to Succeed
@@ -101,7 +101,7 @@ export default function Home() {
 			</section>
 			{/* How It Works Section */}
 			<section className="bg-zinc-50 py-20" id="how-it-works">
-				<div className="max-w-6xl mx-auto px-4">
+				<div className="max-w-7xl mx-auto px-4">
 					<div className="text-center mb-16">
 						<h2 className="text-3xl md:text-4xl font-bold  mb-4">
 							How Loopy Works

@@ -18,7 +18,7 @@ export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.variable} antialiased min-h-screen min-w-screen`}
+				className={`${inter.variable} antialiased min-h-screen`}
 			>
 				<Providers>{children}</Providers>
 			</body>
