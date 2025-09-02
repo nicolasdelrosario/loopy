@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers";
+import { Toaster } from "@/components/ui/sonner";
 import { constructMetadata } from "@/utils/construct-metadata";
 
 const inter = Inter({
@@ -17,10 +18,9 @@ type Props = {
 export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
-			<body
-				className={`${inter.variable} antialiased min-h-screen`}
-			>
+			<body className={`${inter.variable} antialiased min-h-screen`}>
 				<Providers>{children}</Providers>
+				<Toaster position="top-right" />
 			</body>
 		</html>
 	);
