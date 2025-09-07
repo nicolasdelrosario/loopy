@@ -32,6 +32,36 @@ export class AuthService {
 		if (error) throw new Error(error.message);
 	}
 
+	async signOut() {
+		const { error } = await this.supabase.auth.signOut();
+
+		if (error) throw new Error(error.message);
+	}
+
+	async getCurrentUser() {
+		const {
+			data: { user },
+			error,
+		} = await this.supabase.auth.getUser();
+
+		if (error) throw new Error(error.message);
+
+		if (!user) throw new Error("No authenticated user found");
+
+		return user;
+	}
+
+	async getCurrentSession() {
+		const {
+			data: { session },
+			error,
+		} = await this.supabase.auth.getSession();
+
+		if (error) throw new Error(error.message);
+
+		return session;
+	}
+
 	async confirmResetPassword(data: ConfirmResetPasswordSchema) {
 		const { error } = await this.supabase.auth.resetPasswordForEmail(
 			data.email,
