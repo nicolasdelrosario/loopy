@@ -34,7 +34,7 @@ export default async function Header() {
 					{session ? (
 						<>
 							<Button asChild className="bg-transparent" variant="outline">
-								<Link href="/dashboard">Dashboard</Link>
+								<Link href="/dashboard/home">Dashboard</Link>
 							</Button>
 							<form action={signOut}>
 								<Button
