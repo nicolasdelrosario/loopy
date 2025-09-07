@@ -45,28 +45,27 @@ export default function ResetPassword() {
 		resolver: zodResolver(resetPasswordSchema),
 	});
 
-	 const resetPassword: SubmitHandler<ResetPasswordSchema> = async (data) => {
-	 	console.log("the code is", code);
+	const resetPassword: SubmitHandler<ResetPasswordSchema> = async (data) => {
+		if (!code) {
+			return toast("Invalid or missing reset code.");
+		}
 
-	 	if (!code) {
-	 		return toast("Invalid or missing reset code.");
-	 	}
+		const service = new AuthService();
+		const resetPassword = new ResetPasswordUseCase(service);
 
-	 	const service = new AuthService();
-	 	const resetPassword = new ResetPasswordUseCase(service);
+		try {
+			await resetPassword.run(data);
 
-	 	try {
-		await resetPassword.run(data);
+			toast("Password reset successful", {
+				description: "You can now sign in with your new password.",
+			});
 
-        toast("Password reset successful", {
-            description: "You can now sign in with your new password.",
-        });
-        router.push("/auth/signin");
-	 	} catch (error) {
-	 		console.log("error", error);
-	 		toast("Password reset failed. Please try again.");
-	 	}
-	 };
+			router.push("/auth/signin");
+		} catch (error) {
+			console.log("error", error);
+			toast("Password reset failed. Please try again.");
+		}
+	};
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-zinc-50 via-white to-neutral-100 flex items-center justify-center p-4">
