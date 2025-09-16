@@ -11,23 +11,32 @@
 		},
 		"enabled": true
 	},
-	"files": { "ignoreUnknown": false },
-	"formatter": { "enabled": true, "indentStyle": "tab", "lineEnding": "crlf" },
+	"files": {
+		"experimentalScannerIgnores": [
+			".next",
+			"node_modules",
+			"out",
+			"build",
+			"dist"
+		],
+		"ignoreUnknown": false
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"lineEnding": "crlf"
+	},
 	"javascript": {
 		"formatter": { "quoteStyle": "double" },
 		"parser": { "unsafeParameterDecoratorsEnabled": true }
 	},
 	"linter": {
 		"enabled": true,
-		"includes": [
-			"**",
-			"!node_modules/**",
-			"!.next/**",
-			"!out/**",
-			"!build/**",
-			"!next-env.d.ts"
-		],
 		"rules": { "recommended": false }
 	},
-	"vcs": { "clientKind": "git", "enabled": true, "useIgnoreFile": false }
+	"vcs": {
+		"clientKind": "git",
+		"enabled": true,
+		"useIgnoreFile": true
+	}
 }
