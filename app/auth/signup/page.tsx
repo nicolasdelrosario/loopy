@@ -27,7 +27,6 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { type SignUpSchema, signUpSchema } from "@/schemas/auth/signUpSchema";
 import { AuthService } from "@/services/authService";
-import { SignUpUseCase } from "@/usecases/auth/signUpUseCase";
 
 export default function SignUp() {
 	const router = useRouter();
@@ -46,11 +45,10 @@ export default function SignUp() {
 	});
 
 	const signUp: SubmitHandler<SignUpSchema> = async (data) => {
-		const authService = new AuthService();
-		const signUpUseCase = new SignUpUseCase(authService);
+		const service = new AuthService();
 
 		try {
-			await signUpUseCase.run(data);
+			await service.signUp(data);
 
 			router.push("/auth/signin");
 			toast("Account created.", {

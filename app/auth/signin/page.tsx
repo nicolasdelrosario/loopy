@@ -26,7 +26,6 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { type SignInSchema, signInSchema } from "@/schemas/auth/signInSchema";
 import { AuthService } from "@/services/authService";
-import { SignInUseCase } from "@/usecases/auth/signInUseCase";
 
 export default function SignIn() {
 	const router = useRouter();
@@ -41,11 +40,10 @@ export default function SignIn() {
 	});
 
 	const signIn: SubmitHandler<SignInSchema> = async (data) => {
-		const authService = new AuthService();
-		const signInUseCase = new SignInUseCase(authService);
+		const service = new AuthService();
 
 		try {
-			await signInUseCase.run(data);
+			await service.signIn(data);
 
 			router.push("/dashboard/home");
 			toast("Signed in.", {

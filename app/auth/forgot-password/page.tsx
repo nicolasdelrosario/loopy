@@ -28,7 +28,6 @@ import {
 	confirmResetPasswordSchema,
 } from "@/schemas/auth/confirmResetPasswordSchema";
 import { AuthService } from "@/services/authService";
-import { ConfirmResetPasswordUseCase } from "@/usecases/auth/confirmResetPasswordUseCase";
 
 export default function ForgotPassword() {
 	const form = useForm<ConfirmResetPasswordSchema>({
@@ -42,13 +41,10 @@ export default function ForgotPassword() {
 	const confirmResetPassword: SubmitHandler<
 		ConfirmResetPasswordSchema
 	> = async (data) => {
-		const authService = new AuthService();
-		const confirmResetPasswordUseCase = new ConfirmResetPasswordUseCase(
-			authService,
-		);
+		const service = new AuthService();
 
 		try {
-			await confirmResetPasswordUseCase.run(data);
+			await service.confirmResetPassword(data);
 
 			toast("Password reset email sent.", {
 				description: "Check your inbox for the reset link.",

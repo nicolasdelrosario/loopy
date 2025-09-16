@@ -29,7 +29,6 @@ import {
 	resetPasswordSchema,
 } from "@/schemas/auth/resetPasswordSchema";
 import { AuthService } from "@/services/authService";
-import { ResetPasswordUseCase } from "@/usecases/auth/resetPasswordUseCase";
 
 export default function ResetPassword() {
 	const router = useRouter();
@@ -51,18 +50,16 @@ export default function ResetPassword() {
 		}
 
 		const service = new AuthService();
-		const resetPassword = new ResetPasswordUseCase(service);
 
 		try {
-			await resetPassword.run(data);
+			await service.resetPassword(data);
 
 			toast("Password reset successful", {
 				description: "You can now sign in with your new password.",
 			});
 
 			router.push("/auth/signin");
-		} catch (error) {
-			console.log("error", error);
+		} catch {
 			toast("Password reset failed. Please try again.");
 		}
 	};
