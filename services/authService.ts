@@ -2,13 +2,11 @@ import { ConfirmResetPasswordSchema } from "@/schemas/auth/confirmResetPasswordS
 import { ResetPasswordSchema } from "@/schemas/auth/resetPasswordSchema";
 import { SignInSchema } from "@/schemas/auth/signInSchema";
 import { SignUpSchema } from "@/schemas/auth/signUpSchema";
-import { createClient } from "@/utils/supabase/client";
+import { BaseService } from "@/services/baseService";
 
-export class AuthService {
-	private supabase = createClient();
-
+export class AuthService extends BaseService {
 	async signUp(data: SignUpSchema) {
-		const { error } = await this.supabase.auth.signUp({
+		const { data: result, error } = await this.supabase.auth.signUp({
 			email: data.email,
 			options: {
 				data: {
@@ -20,22 +18,25 @@ export class AuthService {
 			password: data.password,
 		});
 
-		if (error) throw new Error(error.message);
+		this.handleError(error);
+		return result;
 	}
 
 	async signIn(data: SignInSchema) {
-		const { error } = await this.supabase.auth.signInWithPassword({
-			email: data.email,
-			password: data.password,
-		});
+		const { data: result, error } = await this.supabase.auth.signInWithPassword(
+			{
+				email: data.email,
+				password: data.password,
+			},
+		);
 
-		if (error) throw new Error(error.message);
+		this.handleError(error);
+		return result;
 	}
 
 	async signOut() {
 		const { error } = await this.supabase.auth.signOut();
-
-		if (error) throw new Error(error.message);
+		this.handleError(error);
 	}
 
 	async getCurrentUser() {
@@ -44,8 +45,7 @@ export class AuthService {
 			error,
 		} = await this.supabase.auth.getUser();
 
-		if (error) throw new Error(error.message);
-
+		this.handleError(error);
 		if (!user) throw new Error("No authenticated user found");
 
 		return user;
@@ -57,8 +57,7 @@ export class AuthService {
 			error,
 		} = await this.supabase.auth.getSession();
 
-		if (error) throw new Error(error.message);
-
+		this.handleError(error);
 		return session;
 	}
 
@@ -66,12 +65,11 @@ export class AuthService {
 		const { error } = await this.supabase.auth.resetPasswordForEmail(
 			data.email,
 			{
-				// I will improve this later unu
-				redirectTo: "http://localhost:3000/auth/reset-password",
+				redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/reset-password`,
 			},
 		);
 
-		if (error) throw new Error(error.message);
+		this.handleError(error);
 	}
 
 	async resetPassword(data: ResetPasswordSchema) {
@@ -79,6 +77,6 @@ export class AuthService {
 			password: data.password,
 		});
 
-		if (error) throw new Error(error.message);
+		this.handleError(error);
 	}
 }
