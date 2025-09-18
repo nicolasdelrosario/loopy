@@ -46,7 +46,7 @@ export class AuthService extends BaseService {
 		this.handleError(error);
 		return data;
 	}
-	
+
 	async signOut() {
 		const { error } = await this.supabase.auth.signOut();
 		this.handleError(error);

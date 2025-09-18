@@ -54,7 +54,7 @@ export default function SignIn() {
 		}
 	};
 
-		const signInWithLinkedin = async () => {
+	const signInWithLinkedin = async () => {
 		const service = new AuthService();
 
 		try {

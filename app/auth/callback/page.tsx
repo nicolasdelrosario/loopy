@@ -39,7 +39,7 @@ export default function AuthCallback() {
 					description:
 						"There was an error during the LinkedIn authentication process.",
 				});
-				
+
 				router.push("/auth/signin");
 			}
 		};
