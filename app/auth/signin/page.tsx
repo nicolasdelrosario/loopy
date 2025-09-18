@@ -54,6 +54,18 @@ export default function SignIn() {
 		}
 	};
 
+		const signInWithLinkedin = async () => {
+		const service = new AuthService();
+
+		try {
+			await service.signInWithLinkedIn();
+
+			toast("LinkedIn account linked.");
+		} catch {
+			toast("Could not link LinkedIn account. Please try again.");
+		}
+	};
+
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-zinc-50 via-white to-neutral-100 flex items-center justify-center p-4">
 			<div className="w-full max-w-md">
@@ -132,6 +144,32 @@ export default function SignIn() {
 							</form>
 						</Form>
 
+						<div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
+							<span className="bg-background text-muted-foreground relative z-10 px-2">
+								Or continue with
+							</span>
+						</div>
+						<Button
+							className="w-full cursor-pointer"
+							onClick={signInWithLinkedin}
+							type="button"
+							variant="outline"
+						>
+							<svg
+								height="24"
+								version="1.1"
+								viewBox="0 0 24 24"
+								width="24"
+								xmlns="http://www.w3.org/2000/svg"
+								xmlnsXlink="http://www.w3.org/1999/xlink"
+							>
+								<path
+									d="M21,21H17V14.25C17,13.19 15.81,12.31 14.75,12.31C13.69,12.31 13,13.19 13,14.25V21H9V9H13V11C13.66,9.93 15.36,9.24 16.5,9.24C19,9.24 21,11.28 21,13.75V21M7,21H3V9H7V21M5,3A2,2 0 0,1 7,5A2,2 0 0,1 5,7A2,2 0 0,1 3,5A2,2 0 0,1 5,3Z"
+									fill="currentColor"
+								/>
+							</svg>
+							Sign in with LinkedIn
+						</Button>
 						<Separator className="bg-zinc-100" />
 
 						<div className="text-center text-sm ">

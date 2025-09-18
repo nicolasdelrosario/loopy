@@ -34,6 +34,19 @@ export class AuthService extends BaseService {
 		return result;
 	}
 
+	async signInWithLinkedIn() {
+		const { data, error } = await this.supabase.auth.signInWithOAuth({
+			options: {
+				redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+				scopes: "openid profile email",
+			},
+			provider: "linkedin_oidc",
+		});
+
+		this.handleError(error);
+		return data;
+	}
+	
 	async signOut() {
 		const { error } = await this.supabase.auth.signOut();
 		this.handleError(error);
