@@ -16,7 +16,7 @@ export default async function Header() {
 		const supabase = await createClient();
 		await supabase.auth.signOut();
 
-		redirect("/auth/signin");
+		redirect("/");
 	};
 
 	return (
