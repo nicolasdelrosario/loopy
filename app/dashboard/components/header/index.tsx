@@ -1,10 +1,4 @@
-import {
-	BarChart3,
-	Bell,
-	LogOut,
-	Settings,
-	User,
-} from "lucide-react";
+import { BarChart3, Bell, LogOut, Settings, User } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -22,17 +16,17 @@ import { createClient } from "@/utils/supabase/server";
 export default async function Header() {
 	const supabase = await createClient();
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
 
-  if (!session) return null;
+	if (!user) return null;
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", session.user.id) 
-    .single();
+	const { data: profile } = await supabase
+		.from("profiles")
+		.select("*")
+		.eq("id", user.id)
+		.single();
 
 	const signOut = async () => {
 		"use server";
@@ -79,7 +73,8 @@ export default async function Header() {
 									<Avatar className="h-10 w-10">
 										<AvatarImage alt="profile" src={profile?.avatar_url} />
 										<AvatarFallback className="bg-zinc-100 text-zinc-700">
-											{profile?.first_name?.[0] + profile?.last_name?.[0]}
+											{profile?.first_name?.charAt(0) +
+												profile?.last_name?.charAt(0)}
 										</AvatarFallback>
 									</Avatar>
 								</Button>
