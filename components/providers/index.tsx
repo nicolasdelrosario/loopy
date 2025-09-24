@@ -1,4 +1,5 @@
 import ReactScan from "@/components/providers/react-scan";
+import { Theme } from "@/components/providers/theme";
 import { env } from "@/config/env";
 
 type ProvidersProps = {
@@ -13,7 +14,14 @@ function Providers({ children }: ProvidersProps) {
 					<ReactScan />
 				</>
 			)}
-			{children}
+			<Theme
+				attribute="class"
+				defaultTheme="system"
+				disableTransitionOnChange
+				enableSystem
+			>
+				{children}
+			</Theme>
 		</>
 	);
 }

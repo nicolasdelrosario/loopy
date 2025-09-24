@@ -17,7 +17,7 @@ type Props = {
 
 export default function RootLayout({ children }: Props) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body className={`${inter.variable} antialiased min-h-screen`}>
 				<Providers>{children}</Providers>
 				<Toaster position="top-right" />
