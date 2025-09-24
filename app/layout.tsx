@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers";
-import { Toaster } from "@/components/ui/sonner";
+import Sooner from "@/components/providers/sooner";
 import { constructMetadata } from "@/utils/construct-metadata";
 
 const inter = Inter({
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Props) {
 		<html lang="en" suppressHydrationWarning>
 			<body className={`${inter.variable} antialiased min-h-screen`}>
 				<Providers>{children}</Providers>
-				<Toaster position="top-right" />
+				<Sooner />
 			</body>
 		</html>
 	);
