@@ -1,6 +1,8 @@
+import AddHabit from "@/app/dashboard/components/add-habit";
+import Habits from "@/app/dashboard/components/habits";
+import Progress from "@/app/dashboard/components/progress";
+import StatsOverview from "@/app/dashboard/components/stats-overview";
 import { createClient } from "@/utils/supabase/server";
-import AddHabit from "../components/add-habit";
-import Habits from "../components/habits";
 
 export default async function Home() {
 	const supabase = await createClient();
@@ -28,12 +30,18 @@ export default async function Home() {
 	return (
 		<main className="max-w-7xl mx-auto px-4 py-6">
 			<div className="mb-8">
-				<h1 className="text-3xl font-bold">Good morning, {profile?.name}!</h1>
+				<h1 className="text-3xl font-bold">
+					Good morning, {profile?.first_name}!
+				</h1>
 				<p className="text-muted-foreground">
 					Let's make today count. You have {habits.length} habits left to
 					complete.
 				</p>
 			</div>
+
+			<section className="max-w-7xl mx-auto py-4">
+				<StatsOverview habits={habits} />
+			</section>
 
 			<section className="max-w-7xl mx-auto py-4">
 				<div className="grid lg:grid-cols-3 gap-8">
@@ -51,6 +59,10 @@ export default async function Home() {
 								You have no habits yet. Add a new one to get started!
 							</p>
 						)}
+					</div>
+
+					<div className="lg:col-span-1 space-y-6">
+						<Progress habits={habits} />
 					</div>
 				</div>
 			</section>

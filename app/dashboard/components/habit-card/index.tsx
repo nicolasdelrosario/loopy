@@ -7,6 +7,7 @@ import {
 	Pencil,
 	Trash,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ type Props = {
 };
 
 export default function HabitCard({ habit, profile }: Props) {
+	const router = useRouter();
 	const [isCompleted, setIsCompleted] = useState(habit.is_completed);
 	const [editOpen, setEditOpen] = useState(false);
 	const [deleteOpen, setDeleteOpen] = useState(false);
@@ -50,6 +52,7 @@ export default function HabitCard({ habit, profile }: Props) {
 
 			if (!error) {
 				toast.success("Habit updated successfully.");
+				router.refresh();
 			}
 		} catch {
 			toast.error("Could not update habit. Please try again.");
