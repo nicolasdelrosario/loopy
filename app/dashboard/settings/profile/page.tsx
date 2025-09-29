@@ -18,6 +18,14 @@ export default async function Profile() {
 		.eq("id", user.id)
 		.single();
 
+	const { data: habits } = await supabase
+		.from("habits")
+		.select("*")
+		.order("created_at", { ascending: false })
+		.eq("user_id", user.id);
+
+	if (!habits) return null;
+
 	return (
 		<main className="max-w-7xl mx-auto px-4 py-6">
 			<div className="mb-8">
@@ -30,7 +38,7 @@ export default async function Profile() {
 			<div className="grid lg:grid-cols-3 gap-8">
 				<div className="lg:col-span-1">
 					<ProfileOverview profile={profile} />
-					<StatsOverview profile={profile} />
+					<StatsOverview habits={habits} />
 				</div>
 
 				<div className="lg:col-span-2 space-y-6">
