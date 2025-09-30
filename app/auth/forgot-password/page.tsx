@@ -28,6 +28,7 @@ import {
 	confirmResetPasswordSchema,
 } from "@/schemas/auth/confirmResetPasswordSchema";
 import { AuthService } from "@/services/authService";
+import { Logo } from "@/components/logo";
 
 export default function ForgotPassword() {
 	const form = useForm<ConfirmResetPasswordSchema>({
@@ -68,12 +69,7 @@ export default function ForgotPassword() {
 
 				<Card className="border-zinc-100 shadow-lg">
 					<CardHeader className="text-center">
-						<div className="flex items-center justify-center gap-2 mb-4">
-							<div className="w-8 h-8 bg-primary/96 rounded-full flex items-center justify-center">
-								<div className="w-4 h-4 border-2 border-white rounded-full"></div>
-							</div>
-							<span className="text-xl font-bold ">Loopy</span>
-						</div>
+										<Logo className="justify-center mb-4" size="md" withLink={false} />
 						<CardTitle className="text-2xl ">Reset your password</CardTitle>
 						<CardDescription>
 							Enter your email address and we'll send you a link to reset your

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -32,8 +33,6 @@ import { AuthService } from "@/services/authService";
 
 export default function ResetPassword() {
 	const router = useRouter();
-	const searchParams = useSearchParams();
-	const code = searchParams.get("code");
 
 	const form = useForm<ResetPasswordSchema>({
 		defaultValues: {
@@ -45,10 +44,6 @@ export default function ResetPassword() {
 	});
 
 	const resetPassword: SubmitHandler<ResetPasswordSchema> = async (data) => {
-		if (!code) {
-			return toast("Invalid or missing reset code.");
-		}
-
 		const service = new AuthService();
 
 		try {
@@ -77,12 +72,7 @@ export default function ResetPassword() {
 
 				<Card className="border-zinc-100 shadow-lg">
 					<CardHeader className="text-center">
-						<div className="flex items-center justify-center gap-2 mb-4">
-							<div className="w-8 h-8 bg-primary/96 rounded-full flex items-center justify-center">
-								<div className="w-4 h-4 border-2 border-white rounded-full"></div>
-							</div>
-							<span className="text-xl font-bold ">Loopy</span>
-						</div>
+					<Logo className="justify-center mb-4" size="md" withLink={false} />
 						<CardTitle className="text-2xl">Choose a new password</CardTitle>
 						<CardDescription>
 							Enter and confirm your new password to finish resetting your

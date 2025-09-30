@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/server";
 
@@ -7,8 +8,8 @@ export default async function Header() {
 	const supabase = await createClient();
 
 	const {
-		data: { session },
-	} = await supabase.auth.getSession();
+		data: { user },
+	} = await supabase.auth.getUser();
 
 	const signOut = async () => {
 		"use server";
@@ -20,20 +21,29 @@ export default async function Header() {
 	};
 
 	return (
-		<header className="border-b backdrop-blur-sm">
-			<div className="mx-auto container px-4 py-4 flex items-center justify-between">
-				<div className="flex items-center gap-2">
-					<div className="w-8 h-8 bg-primary/96 rounded-full flex items-center justify-center">
-						<div className="w-4 h-4 border-2 border-white rounded-full"></div>
-					</div>
-					<span className="text-xl font-bold ">Loopy</span>
-				</div>
+		<header className="border-b border-border bg-gradient-to-r from-background via-background/95 to-background/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+			<div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+				{/* Logo */}
+				<Logo size="md" withLink />
+
+				{/* Nav */}
 				<nav className="hidden md:flex items-center gap-6">
-					<Link href="#features">Features</Link>
-					<Link href="#how-it-works">How it Works</Link>
-					{session ? (
+					<Link
+						className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+						href="#features"
+					>
+						Features
+					</Link>
+					<Link
+						className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+						href="#how-it-works"
+					>
+						How it Works
+					</Link>
+
+					{user ? (
 						<>
-							<Button asChild className="bg-transparent" variant="outline">
+							<Button asChild variant="outline">
 								<Link href="/dashboard/home">Dashboard</Link>
 							</Button>
 							<form action={signOut}>
@@ -48,7 +58,7 @@ export default async function Header() {
 						</>
 					) : (
 						<>
-							<Button asChild className="bg-transparent" variant="outline">
+							<Button asChild variant="outline">
 								<Link href="/auth/signin">Sign In</Link>
 							</Button>
 							<Button asChild>

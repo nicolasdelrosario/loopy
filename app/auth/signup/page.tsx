@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { type SignUpSchema, signUpSchema } from "@/schemas/auth/signUpSchema";
 import { AuthService } from "@/services/authService";
+import { Logo } from "@/components/logo";
 
 export default function SignUp() {
 	const router = useRouter();
@@ -85,12 +86,7 @@ export default function SignUp() {
 
 				<Card className="border-zinc-100 shadow-lg">
 					<CardHeader className="text-center">
-						<div className="flex items-center justify-center gap-2 mb-4">
-							<div className="w-8 h-8 bg-primary/96 rounded-full flex items-center justify-center">
-								<div className="size-4 border-2 border-white rounded-full"></div>
-							</div>
-							<span className="text-xl font-bold ">Loopy</span>
-						</div>
+						<Logo className="justify-center mb-4" size="md" withLink={false} />
 						<CardTitle className="text-2xl ">Create your account</CardTitle>
 						<CardDescription>
 							Start building better habits today

@@ -1,6 +1,8 @@
 import { BarChart3, Bell, LogOut, Settings, User } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Logo } from "@/components/logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -38,32 +40,48 @@ export default async function Header() {
 	};
 
 	return (
-		<header className="border-b border-zinc-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-			<div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-				<Link className="flex items-center gap-2" href="/dashboard/home">
-					<div className="w-8 h-8 bg-primary/96 rounded-full flex items-center justify-center">
-						<div className="w-4 h-4 border-2 border-white rounded-full"></div>
-					</div>
-					<span className="text-xl font-bold ">Loopy</span>
-				</Link>
+		<header className="border-b border-border bg-gradient-to-r from-background via-background/95 to-background/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+			<div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+				{/* Logo */}
+				<Logo size="md" withLink />
 
 				<div className="flex items-center gap-4">
+					{/* Desktop nav */}
 					<nav className="hidden md:flex items-center gap-6">
-						<Link href="/dashboard/home">Home</Link>
-						<Link href="/dashboard/progress">Progress</Link>
-						<Link href="/dashboard/settings">Settings</Link>
+						<Link
+							className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+							href="/dashboard/home"
+						>
+							Home
+						</Link>
+						{/* <Link
+							className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+							href="/dashboard/progress"
+						>
+							Progress
+						</Link> */}
+						<Link
+							className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+							href="/dashboard/settings"
+						>
+							Settings
+						</Link>
 					</nav>
 
-					<div className="flex items-center gap-4">
-						{/* Working on it unu */}
+					<div className="flex items-center gap-3">
+						{/* Notifications
 						<Button
-							className="text-zinc-700 hover:text-zinc-900 hover:bg-zinc-50"
+							className="text-muted-foreground hover:text-foreground"
 							size="icon"
 							variant="ghost"
 						>
 							<Bell className="size-5" />
-						</Button>
+						</Button> */}
 
+						{/* Theme Toggle */}
+						<ThemeToggle />
+
+						{/* User Menu */}
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<Button
@@ -72,9 +90,9 @@ export default async function Header() {
 								>
 									<Avatar className="h-10 w-10">
 										<AvatarImage alt="profile" src={profile?.avatar_url} />
-										<AvatarFallback className="bg-zinc-100 text-zinc-700">
-											{profile?.first_name?.charAt(0) +
-												profile?.last_name?.charAt(0)}
+										<AvatarFallback className="bg-muted text-muted-foreground">
+											{profile?.first_name?.charAt(0)}
+											{profile?.last_name?.charAt(0)}
 										</AvatarFallback>
 									</Avatar>
 								</Button>
@@ -82,7 +100,7 @@ export default async function Header() {
 							<DropdownMenuContent align="end" className="w-56" forceMount>
 								<DropdownMenuLabel className="font-normal">
 									<div className="flex flex-col space-y-1">
-										<p className="text-sm font-medium leading-none">
+										<p className="text-sm font-medium leading-none text-foreground">
 											{profile?.first_name} {profile?.last_name}
 										</p>
 										<p className="text-xs leading-none text-muted-foreground">
@@ -91,12 +109,12 @@ export default async function Header() {
 									</div>
 								</DropdownMenuLabel>
 								<DropdownMenuSeparator />
-								<DropdownMenuItem asChild>
+								{/* <DropdownMenuItem asChild>
 									<Link className="cursor-pointer" href="/dashboard/progress">
 										<BarChart3 className="mr-2 size-4" />
 										<span>Progress</span>
 									</Link>
-								</DropdownMenuItem>
+								</DropdownMenuItem> */}
 								<DropdownMenuItem asChild>
 									<Link
 										className="cursor-pointer"
