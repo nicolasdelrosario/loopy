@@ -16,7 +16,7 @@ function Providers({ children }: ProvidersProps) {
 			)}
 			<Theme
 				attribute="class"
-				defaultTheme="system"
+				defaultTheme="light"
 				disableTransitionOnChange
 				enableSystem
 			>
