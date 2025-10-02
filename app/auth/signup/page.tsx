@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -27,7 +28,6 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { type SignUpSchema, signUpSchema } from "@/schemas/auth/signUpSchema";
 import { AuthService } from "@/services/authService";
-import { Logo } from "@/components/logo";
 
 export default function SignUp() {
 	const router = useRouter();

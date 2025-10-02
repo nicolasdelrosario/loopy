@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -28,7 +29,6 @@ import {
 	confirmResetPasswordSchema,
 } from "@/schemas/auth/confirmResetPasswordSchema";
 import { AuthService } from "@/services/authService";
-import { Logo } from "@/components/logo";
 
 export default function ForgotPassword() {
 	const form = useForm<ConfirmResetPasswordSchema>({
@@ -69,7 +69,7 @@ export default function ForgotPassword() {
 
 				<Card className="border-zinc-100 shadow-lg">
 					<CardHeader className="text-center">
-										<Logo className="justify-center mb-4" size="md" withLink={false} />
+						<Logo className="justify-center mb-4" size="md" withLink={false} />
 						<CardTitle className="text-2xl ">Reset your password</CardTitle>
 						<CardDescription>
 							Enter your email address and we'll send you a link to reset your

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -26,7 +27,6 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { type SignInSchema, signInSchema } from "@/schemas/auth/signInSchema";
 import { AuthService } from "@/services/authService";
-import { Logo } from "@/components/logo";
 
 export default function SignIn() {
 	const router = useRouter();
@@ -81,7 +81,7 @@ export default function SignIn() {
 
 				<Card className="border-zinc-100 shadow-lg">
 					<CardHeader className="text-center">
-					<Logo className="justify-center mb-4" size="md" withLink={false} />
+						<Logo className="justify-center mb-4" size="md" withLink={false} />
 						<CardTitle className="text-2xl ">Welcome back</CardTitle>
 						<CardDescription>
 							Sign in to continue your habit journey

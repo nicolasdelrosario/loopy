@@ -72,7 +72,7 @@ export default function ResetPassword() {
 
 				<Card className="border-zinc-100 shadow-lg">
 					<CardHeader className="text-center">
-					<Logo className="justify-center mb-4" size="md" withLink={false} />
+						<Logo className="justify-center mb-4" size="md" withLink={false} />
 						<CardTitle className="text-2xl">Choose a new password</CardTitle>
 						<CardDescription>
 							Enter and confirm your new password to finish resetting your
